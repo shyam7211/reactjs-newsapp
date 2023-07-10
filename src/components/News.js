@@ -33,6 +33,7 @@ export class News extends Component {
         let data = await fetch(url);
         let parsedData = await data.json();
         this.setState({ articles: parsedData.articles, loading: false, totalResults: parsedData.totalResults })
+        document.title = `Portal News - ${(this.props.category).charAt(0).toUpperCase() + (this.props.category).slice(1)}` ;
     }
     async componentDidMount() {
         this.updateNews();
@@ -73,7 +74,7 @@ export class News extends Component {
         return (
             <div>
                 <div className="container my-3">
-                    <h2 className='text-center my-4'>Top Headlines of the day</h2>
+                    <h2 className='text-center my-4'>{(this.props.category).charAt(0).toUpperCase() + (this.props.category).slice(1)} - Top Headlines</h2>
                     {this.state.loading && <Spinner />}
                     <div className="row my-2">
                         {this.state?.articles?.length && !this.state.loading && this.state?.articles.map((element) => {
