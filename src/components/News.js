@@ -46,6 +46,7 @@ export class News extends Component {
         this.props.setProgress(100);
         document.title = `Portal News - ${(this.props.category).charAt(0).toUpperCase() + (this.props.category).slice(1)}`;
     }
+
     // async updateNews() {
     //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     //     this.setState({ loading: true });
@@ -60,10 +61,6 @@ export class News extends Component {
     //     document.title = `Portal News - ${(this.props.category).charAt(0).toUpperCase() + (this.props.category).slice(1)}`;
     // }
 
-    getUrl = async () => {
-
-        return  `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
-    }
 
     fetchMoreData = () => {
         // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
@@ -130,10 +127,6 @@ export class News extends Component {
     // }
 
     render() {
-        // let i = 1;
-        // console.log(`${i=i+1} --> Console === >  ${this.state}`);
-        console.log(`Page ====>>>>>>>> ${this.state.page}`)
-        // console.log(this.state.page)
         return (
 
             <>
@@ -146,7 +139,6 @@ export class News extends Component {
                         hasMore={this.state.articles.length !== this.state.totalResults}
                         loader={<Spinner />}
                     >
-                    {/* {console.log(`Console ${this.state.articles.length}`)} */}
                     <div className="container">
 
                         <div className="row my-2">
@@ -160,12 +152,12 @@ export class News extends Component {
                         </div>
                     </div>
                     </InfiniteScroll>
+                        {/* Buttons for going to next and previous page if we not use infinite scroll. */}
                     {/* <div className="container d-flex justify-content-between">
                         <button type="button" disabled={this.state.page === 1} onClick={this.prevPage} className="btn btn-info">&larr; Previous</button>
                         <button type="button" disabled={!(this.state.page < Math.ceil(this.state.totalResults / this.props.pageSize))} onClick={this.nxtPage} className="btn btn-info">Next &rarr;</button>
                     </div> */}
                 </div>
-                {console.log(`Page ==== ${this.state.page}`)}
             </>
         )
     }
