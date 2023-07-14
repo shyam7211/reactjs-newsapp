@@ -32,7 +32,7 @@ export class News extends Component {
 
     async updateNews(page) {
         
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b&page=${page}&pagesize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${page}&pagesize=${this.props.pageSize}`;
         // this.setState({ loading: true });
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -47,7 +47,7 @@ export class News extends Component {
         document.title = `Portal News - ${(this.props.category).charAt(0).toUpperCase() + (this.props.category).slice(1)}`;
     }
     // async updateNews() {
-    //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     //     this.setState({ loading: true });
     //     let data = await fetch(url);
     //     let parsedData = await data.json();
@@ -62,11 +62,11 @@ export class News extends Component {
 
     getUrl = async () => {
 
-        return  `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        return  `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     }
 
     fetchMoreData = () => {
-        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         // let pageNum = this.state.page;
         // let data = await fetch(url);
         // let parsedData = await data.json();
@@ -83,7 +83,7 @@ export class News extends Component {
 
     async componentDidMount() {
         this.props.setProgress(10);
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         this.setState({ loading: true });
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -99,14 +99,14 @@ export class News extends Component {
 
     //     async componentDidMount() {
 
-    //         // fetch("https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b").then((response) => response.json())
+    //         // fetch("https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}").then((response) => response.json())
     //         // .then((data) => {
     //         //     this.setState({
     //         //         articles: data.articles
     //         //     });
     //         // });
 
-    //         fetch('https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=26131e3ab15949a2b2ac180087639f0b')
+    //         fetch('https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}')
     //   .then(response => response.json())
     //   .then(data => {
     //     // Do something with the fetched data
