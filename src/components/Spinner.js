@@ -10,5 +10,4 @@ export class Spinner extends Component {
     )
   }
 }
-// To check the what happens on commiting.
 export default Spinner
