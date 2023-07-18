@@ -24,30 +24,24 @@ const News = (props) => {
         let data = await fetch(url);
         let parsedData = await data.json();
         props.setProgress(70);
-            setArticles(articles.concat(parsedData.articles));
-            setTotalResults(parsedData.totalResults)
-            setPage(page);
+        setArticles(articles.concat(parsedData.articles));
+        setTotalResults(parsedData.totalResults)
+        setPage(page);
         props.setProgress(100);
         setLoading(false);
-        
+
     }
 
 
 
 
     const fetchMoreData = async () => {
-        // updateNews(page + 1);
-        // props.setProgress(10);
-        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pagesize=${props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pagesize=${props.pageSize}`;
         let data = await fetch(url);
         let parsedData = await data.json();
-        // props.setProgress(70);
-            setArticles(articles.concat(parsedData.articles));
-            setTotalResults(parsedData.totalResults)
-            setPage(page+1);
-
-        // props.setProgress(100);
-        // document.title = `Portal News - ${(props.category).charAt(0).toUpperCase() + (props.category).slice(1)}`;
+        setArticles(articles.concat(parsedData.articles));
+        setTotalResults(parsedData.totalResults)
+        setPage(page + 1);
     };
 
     useEffect(() => {
@@ -55,38 +49,18 @@ const News = (props) => {
         updateNews(1);
         // eslint-disable-next-line
     }, [])
-    
 
-  
-
-    // async componentDidMount() {
-    //     props.setProgress(10);
-    //     let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${this.state.page}&pagesize=${props.pageSize}`;
-    //     this.setState({ loading: true });
-    //     let data = await fetch(url);
-    //     let parsedData = await data.json();
-    //     props.setProgress(60);
-    //     this.setState({ 
-    //         articles: parsedData.articles, 
-    //         loading: false, 
-    //         totalResults: parsedData.totalResults 
-    //     })
-    //     props.setProgress(100);
-    //     document.title = `Portal News - ${(props.category).charAt(0).toUpperCase() + (props.category).slice(1)}`;
-    // }
-
-        return (
-
-            <>
-                <div className="container mt-5 py-1">
-                    <h2 className='text-center my-3'>{(props.category).charAt(0).toUpperCase() + (props.category).slice(1)} - Top Headlines</h2>
-                    {loading && <Spinner />}
-                    <InfiniteScroll
-                        dataLength={articles.length}
-                        next={fetchMoreData}
-                        hasMore={articles.length !== totalResults}
-                        loader={<Spinner />}
-                    >
+    return (
+        <>
+            <div className="container mt-5 py-1">
+                <h2 className='text-center my-3'>{(props.category).charAt(0).toUpperCase() + (props.category).slice(1)} - Top Headlines</h2>
+                {loading && <Spinner />}
+                <InfiniteScroll
+                    dataLength={articles.length}
+                    next={fetchMoreData}
+                    hasMore={articles.length !== totalResults}
+                    loader={<Spinner />}
+                >
                     <div className="container">
 
                         <div className="row my-2">
@@ -99,10 +73,10 @@ const News = (props) => {
                             })}
                         </div>
                     </div>
-                    </InfiniteScroll>
-                </div>
-            </>
-        )
+                </InfiniteScroll>
+            </div>
+        </>
+    )
 }
 
 News.defaultProps = {
