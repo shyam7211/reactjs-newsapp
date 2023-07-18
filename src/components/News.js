@@ -10,12 +10,13 @@ import { useState, useEffect } from 'react';
 const News = (props) => {
 
     const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
 
 
     const updateNews = async (page) => {
+        setLoading(true);
 
         props.setProgress(10);
 
@@ -27,7 +28,8 @@ const News = (props) => {
             setTotalResults(parsedData.totalResults)
             setPage(page);
         props.setProgress(100);
-        document.title = `Portal News - ${(props.category).charAt(0).toUpperCase() + (props.category).slice(1)}`;
+        setLoading(false);
+        
     }
 
 
@@ -49,10 +51,9 @@ const News = (props) => {
     };
 
     useEffect(() => {
+        document.title = `Portal News - ${(props.category).charAt(0).toUpperCase() + (props.category).slice(1)}`;
         updateNews(1);
-
-        setLoading(false);
-
+        // setLoading(false);
     }, [])
     
 
