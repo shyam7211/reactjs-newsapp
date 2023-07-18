@@ -53,7 +53,7 @@ const News = (props) => {
     useEffect(() => {
         document.title = `Portal News - ${(props.category).charAt(0).toUpperCase() + (props.category).slice(1)}`;
         updateNews(1);
-        // setLoading(false);
+        // eslint-disable-next-line
     }, [])
     
 
@@ -78,8 +78,8 @@ const News = (props) => {
         return (
 
             <>
-                <div className="container my-3">
-                    <h2 className='text-center my-4'>{(props.category).charAt(0).toUpperCase() + (props.category).slice(1)} - Top Headlines</h2>
+                <div className="container mt-5 py-1">
+                    <h2 className='text-center my-3'>{(props.category).charAt(0).toUpperCase() + (props.category).slice(1)} - Top Headlines</h2>
                     {loading && <Spinner />}
                     <InfiniteScroll
                         dataLength={articles.length}
